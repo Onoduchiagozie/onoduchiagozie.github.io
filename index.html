@@ -459,14 +459,14 @@ const PROJECTS = [
     ],
     tech: ['ASP.NET Core', 'C#', 'SQL Server', 'Entity Framework Core', 'Dapper', 'Web Sockets', 'REST APIs'],
     link: null,
-    status: 'Commercial · Production'
+    status: 'Production'
   },
   {
     id: 2,
     cat: 'iot',
     icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#c8813a" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>`,
     bgColor: '#fef3e2',
-    name: 'Argus — IoT Attendance System - MVC',
+    name: 'Argus — IoT Attendance System',
     shortDesc: 'End-to-end RFID-based student attendance monitoring with a Blazor Server admin dashboard, role-based access, and real-time analytics across multiple lecture halls.',
     fullDesc: 'A complete IoT solution integrating physical RFID card readers with cloud-connected backend APIs. Built as an extension of undergraduate dissertation research on modernising traditional paper-based attendance systems in Nigerian universities.',
     highlights: [
@@ -515,7 +515,7 @@ const PROJECTS = [
       'Implemented audit logging and reporting features for full administrative oversight and accountability',
       'Secure multi-role access system distinguishing staff, teachers, and administrative user levels'
     ],
-    tech: ['ASP.NET FRAMEWORK', 'MVC', 'SQL Server', 'C#'],
+    tech: ['ASP.NET FRAMEWORK', 'Dapper','EF-CORE', 'SQL Server', 'C#'],
     link: null,
     status: 'Production'
   },
@@ -611,8 +611,8 @@ function openModal(id) {
   header.innerHTML = `${p.icon}<button class="modal-close" onclick="closeModal()">✕</button>`;
 
   const liveBtn = p.link
-    ? `<a href="${p.link}" target="_blank" rel="noopener" class="btn btn-live">View Live Site ↗</a>`
-    : `<span class="btn btn-primary" style="opacity:0.4;cursor:not-allowed;pointer-events:none">Private / Not Deployed</span>`;
+    ? `<a href="${p.link}" target="_blank" rel="noopener" class="btn btn-live">View ↗</a>`
+    : `<span class="btn btn-primary" style="opacity:0.4;cursor:not-allowed;pointer-events:none">Private REPO</span>`;
 
   body.innerHTML = `
     <span class="modal-category">${p.cat.toUpperCase()} · ${p.status}</span>
