@@ -60,7 +60,7 @@ nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
 .mobile-menu a { font-family: var(--font-display); font-size: 2rem; text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--line); padding-bottom: 20px; transition: color var(--transition); }
 .mobile-menu a:hover { color: var(--accent); }
 
-/* HERO — centered */
+/* HERO */
 .hero {
   min-height: 100svh;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -162,7 +162,6 @@ section { padding: 72px 24px; }
 .career-track.future .career-label { color: var(--ink-muted); }
 .career-track h3 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 8px; }
 .career-track p { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.65; }
-.ccna-badge { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1a4b8c, #0066cc); color: white; border-radius: 8px; padding: 8px 14px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; margin-top: 12px; }
 
 /* PROJECTS */
 .projects { background: var(--white); }
@@ -174,8 +173,20 @@ section { padding: 72px 24px; }
 .projects-scroll::-webkit-scrollbar { display: none; }
 .project-card { flex-shrink: 0; width: 280px; scroll-snap-align: start; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--cream); cursor: pointer; transition: transform var(--transition), box-shadow var(--transition); }
 .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+
+/* Full-width image for cards with imageUrl */
+.project-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* SVG icon fallback for cards without imageUrl */
 .project-card-top { height: 140px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 .project-card-top::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.06) 100%); }
+
 .project-card-body { padding: 18px; }
 .project-card-body h3 { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; color: var(--ink); }
 .project-card-body p { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.55; }
@@ -188,8 +199,8 @@ section { padding: 72px 24px; }
 .modal { width: 100%; max-height: 88svh; background: var(--white); border-radius: 24px 24px 0 0; overflow-y: auto; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 .modal-overlay.open .modal { transform: translateY(0); }
 .modal-handle { width: 36px; height: 4px; border-radius: 99px; background: var(--line); margin: 14px auto 0; }
-.modal-header { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
-.modal-close { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: transform var(--transition); }
+.modal-header { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.modal-close { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: transform var(--transition); z-index: 2; }
 .modal-close:hover { transform: scale(1.1); }
 .modal-body { padding: 24px 24px 40px; }
 .modal-body h2 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 6px; }
@@ -250,6 +261,7 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
 @media (max-width: 767px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
+  .project-image { height: 130px; }
 }
 </style>
 </head>
@@ -284,8 +296,8 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
       <img src="https://drive.google.com/thumbnail?id=12Fy_IuXCl_vc0cTqrfRxNobmz0JUpgut&sz=w200" alt="Valentine Onodu" onerror="this.parentElement.innerHTML='VO'">
     </div>
     <h1 class="hero-name">Valentine<br><em>Onodu</em></h1>
-    <p class="hero-role">SOFTWARE ENGINEER · NETWORK ENTHUSIAST</p>
-    <p class="hero-desc">Designing and shipping production-grade backend systems, full-stack web platforms, and cross-platform mobile applications — with a growing focus on network infrastructure.</p>
+    <p class="hero-role">SOFTWARE ENGINEER · DEVOPS EXPLORER</p>
+    <p class="hero-desc">Backend-focused software engineer exploring DevOps practices such as automation, deployment pipelines, and infrastructure — shipping production-grade systems and cross-platform applications.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">View Projects <span>↓</span></a>
       <a href="#connect" class="btn btn-outline">Let's Connect</a>
@@ -301,12 +313,12 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
 
 <section class="about" id="about">
   <span class="section-tag reveal"> / ABOUT</span>
-  <h2 class="section-title reveal">Engineer at heart,<br><em style="font-style:italic;color:var(--accent)">networker by choice.</em></h2>
+  <h2 class="section-title reveal">Engineer at heart,<br><em style="font-style:italic;color:var(--accent)">builder by nature.</em></h2>
   <div class="about-grid">
     <div class="about-card reveal reveal-delay-1">
       <div class="about-card-icon">🎓</div>
       <h3>Academic Foundation</h3>
-      <p>Computer Science graduate from the University of Nigeria, Nsukka. Final year dissertation focused on an RFID-based Student Attendance Monitoring System — a project that ignited a strong interest in IoT and network engineering.</p>
+      <p>Computer Science graduate from the University of Nigeria, Nsukka. Final year dissertation focused on an RFID-based Student Attendance Monitoring System — a project that deepened my interest in IoT and systems engineering.</p>
     </div>
     <div class="about-card reveal reveal-delay-2">
       <div class="about-card-icon">⚙️</div>
@@ -314,14 +326,14 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
       <p>Backend Software Engineer at SIDMACH Technologies, Lagos — building and maintaining production services for the eStudy educational platform serving 10,000+ active users with ASP.NET Core, C#, and SQL Server.</p>
     </div>
     <div class="about-card reveal reveal-delay-1">
-      <div class="about-card-icon">🌐</div>
-      <h3>Expanding Horizons</h3>
-      <p>Actively pursuing CCNA certification to formalize networking knowledge gained through professional exposure and academic training. Bridging software engineering with network architecture.</p>
+      <div class="about-card-icon">🚀</div>
+      <h3>Expanding into DevOps</h3>
+      <p>Actively exploring DevOps practices — CI/CD pipelines, containerisation, and cloud deployment workflows. Building towards an engineering skillset that spans both application development and infrastructure. Also holds foundational networking knowledge (CCNA in progress).</p>
     </div>
     <div class="about-card reveal reveal-delay-2">
       <div class="about-card-icon">📍</div>
       <h3>Based in Lagos</h3>
-      <p>Working and learning from Ikeja, Lagos State, Nigeria. Open to remote roles, collaborative projects, and knowledge-sharing with developers and network engineers worldwide.</p>
+      <p>Working and learning from Lagos, Nigeria. Open to remote roles, collaborative projects, and knowledge-sharing with developers worldwide.</p>
     </div>
   </div>
 </section>
@@ -332,18 +344,21 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
   <span class="section-tag reveal"> / SKILLS</span>
   <h2 class="section-title reveal">My skillset.</h2>
   <div class="interests-list reveal" style="margin-top:36px;">
-    <span class="interest-pill highlight">🌐 Network Engineering</span>
     <span class="interest-pill highlight">⚙️ Backend Systems</span>
-    <span class="interest-pill">.NET / C#</span>
-    <span class="interest-pill">RESTful APIs</span>
+    <span class="interest-pill highlight">🚀 DevOps &amp; Deployment</span>
+    <span class="interest-pill">C# / .NET</span>
     <span class="interest-pill">Python</span>
+    <span class="interest-pill">JavaScript</span>
+    <span class="interest-pill">Django</span>
+    <span class="interest-pill">FastAPI</span>
+    <span class="interest-pill">React</span>
     <span class="interest-pill">React Native</span>
     <span class="interest-pill">SQL &amp; Databases</span>
-    <span class="interest-pill">📡 IoT &amp; RFID</span>
+    <span class="interest-pill">Git</span>
+    <span class="interest-pill">RESTful APIs</span>
     <span class="interest-pill">Linux Systems</span>
-    <span class="interest-pill">TCP/IP Networking</span>
-    <span class="interest-pill">System Administration</span>
     <span class="interest-pill">Agile / Scrum</span>
+    <span class="interest-pill">📡 IoT &amp; RFID</span>
     <span class="interest-pill">🏗️ System Architecture</span>
   </div>
 </section>
@@ -357,18 +372,17 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
     <div class="career-track active reveal reveal-delay-1">
       <div class="career-label">Active — Software</div>
       <h3>Backend Engineering</h3>
-      <p>Building production-grade APIs, microservices, and full-stack applications using ASP.NET Core, Python/Django, and React Native. Delivering real-world impact at scale.</p>
+      <p>Building production-grade APIs, microservices, and full-stack applications using ASP.NET Core, Python/Django, and React Native. Delivering real-world impact at scale with a focus on performance and reliability.</p>
     </div>
     <div class="career-track learning reveal reveal-delay-2">
-      <div class="career-label">In Progress — Networking</div>
-      <h3>CCNA Certification</h3>
-      <p>Preparing for Cisco's CCNA certification to gain deep mastery of routing, switching, IP addressing, subnetting, network security, and infrastructure design.</p>
-      <div class="ccna-badge">📘 Cisco CCNA 200-301</div>
+      <div class="career-label">In Progress — DevOps</div>
+      <h3>DevOps Practices</h3>
+      <p>Exploring CI/CD pipelines, containerisation with Docker, cloud deployment, and infrastructure automation. Building the bridge between writing code and shipping it reliably to production.</p>
     </div>
     <div class="career-track future reveal reveal-delay-3">
       <div class="career-label">Vision — Convergence</div>
-      <h3>Full-Stack + Network</h3>
-      <p>The long-term goal: become an engineer who designs and builds systems end-to-end — from application layers to network infrastructure. Software meets infrastructure.</p>
+      <h3>Full-Stack + Infrastructure</h3>
+      <p>The long-term goal: become an engineer who designs and builds systems end-to-end — from application layers to deployment infrastructure. Software engineering meets platform reliability.</p>
     </div>
   </div>
 </section>
@@ -393,7 +407,7 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
 <section class="connect" id="connect">
   <span class="section-tag"> / CONNECT</span>
   <h2 class="section-title">Let's build<br><em style="font-style:italic">something great.</em></h2>
-  <p>Whether you're looking to collaborate on a project, discuss networking concepts, or just want to say hi — my inbox is open.</p>
+  <p>Whether you're looking to collaborate on a project, explore DevOps ideas together, or just want to say hi — my inbox is open.</p>
   <div class="social-links">
     <a href="https://github.com/Onoduchiagozie?tab=repositories" target="_blank" rel="noopener" class="social-link github">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
@@ -411,7 +425,7 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
 </section>
 
 <footer>
-  <p>© Valentine Chiagozie Onodu · Ikeja, Lagos, Nigeria </p>
+  <p>© Valentine Chiagozie Onodu · Lagos, Nigeria</p>
 </footer>
 
 <div class="modal-overlay" id="modal-overlay">
@@ -423,30 +437,12 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
 </div>
 
 <script>
-/* =====================================================================
-   ✏️  PROJECTS DATA — Edit all your projects here in one place.
-   =====================================================================
-
-   FIELDS:
-     id          → unique number (don't repeat)
-     cat         → 'backend' | 'fullstack' | 'iot' | 'mobile'
-     icon        → SVG string displayed on card & modal (swap color in stroke="...")
-     bgColor     → card header background hex color
-     name        → project title
-     shortDesc   → 1–2 sentence teaser on the scroll card
-     fullDesc    → opening paragraph in the modal
-     highlights  → array of bullet strings for "Key Contributions" in modal
-     tech        → array of tech stack tags
-     link        → live URL string, or null for no live link
-     status      → label e.g. 'Commercial · Production' | 'Personal Project'
-   ===================================================================== */
-
 const PROJECTS = [
   {
     id: 1,
     cat: 'backend',
-    icon:'https://estudy.ng/static/media/Applogo.9d11927335e1bfd9cc3d.png',
-    // icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#1a6b4a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>`,
+    imageUrl: 'https://estudy.ng/static/media/Applogo.9d11927335e1bfd9cc3d.png',
+    icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#1a6b4a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>`,
     bgColor: '#e8f5ef',
     name: 'eStudy Educational Platform',
     shortDesc: 'Backend services for a production exam-prep platform — 10,000+ active users, gamified peer-to-peer quiz battles, and text-to-speech accessibility for WAEC candidates.',
@@ -455,8 +451,8 @@ const PROJECTS = [
       'Text-to-Speech (TTS) engine — improving accessibility for visually impaired candidates and reducing screen-time dependency',
       'Gamification system with real-time peer-to-peer quiz battles, leaderboards, and friend challenges via Web Sockets — drove an increase in user engagement and platform retention',
       'RESTful APIs for user management, quiz delivery, performance tracking, and real-time notifications',
-      'Optimised database operations using Entity Framework Core and Dapper, supporting 10,000+ active users ',
-     ],
+      'Optimised database operations using Entity Framework Core and Dapper, supporting 10,000+ active users',
+    ],
     tech: ['ASP.NET Core', 'C#', 'SQL Server', 'Entity Framework Core', 'Dapper', 'Web Sockets', 'REST APIs'],
     link: null,
     status: 'Production'
@@ -464,6 +460,7 @@ const PROJECTS = [
   {
     id: 2,
     cat: 'iot',
+    imageUrl: null,
     icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#c8813a" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>`,
     bgColor: '#fef3e2',
     name: 'Argus — IoT Attendance System',
@@ -484,8 +481,8 @@ const PROJECTS = [
   {
     id: 3,
     cat: 'fullstack',
-    icon:'https://valentineonodu.pythonanywhere.com/static/logo/VatAgro-wh.png',
-    // icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2d6a9f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    imageUrl: 'https://valentineonodu.pythonanywhere.com/static/logo/VatAgro-wh.png',
+    icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2d6a9f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
     bgColor: '#e8f0fe',
     name: 'Vatagro — Agricultural Marketplace',
     shortDesc: 'Full-stack marketplace connecting Nigerian farm produce buyers directly with local sellers. Eliminates intermediaries, reduces costs — and it\'s live.',
@@ -505,6 +502,7 @@ const PROJECTS = [
   {
     id: 4,
     cat: 'backend',
+    imageUrl: null,
     icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><line x1="7" y1="8" x2="7.01" y2="8"/><line x1="10" y1="8" x2="14" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/></svg>`,
     bgColor: '#f3e8ff',
     name: 'Oschot School Portal',
@@ -516,13 +514,14 @@ const PROJECTS = [
       'Implemented audit logging and reporting features for full administrative oversight and accountability',
       'Secure multi-role access system distinguishing staff, teachers, and administrative user levels'
     ],
-    tech: ['ASP.NET FRAMEWORK', 'Dapper','EF-CORE', 'SQL Server', 'C#'],
+    tech: ['ASP.NET FRAMEWORK', 'Dapper', 'EF-CORE', 'SQL Server', 'C#'],
     link: null,
     status: 'Production'
   },
   {
     id: 5,
     cat: 'mobile',
+    imageUrl: null,
     icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M8.5 14s1.5 2 3.5 2 3.5-2 3.5-2"/><circle cx="9" cy="9" r="0.8" fill="#d97706"/><circle cx="15" cy="9" r="0.8" fill="#d97706"/><path d="M9.5 6.5C10 5.5 11 5 12 5s2 .5 2.5 1.5"/></svg>`,
     bgColor: '#fff7ed',
     name: 'Creamers — Cake &amp; Treats Ordering App',
@@ -542,11 +541,12 @@ const PROJECTS = [
   {
     id: 6,
     cat: 'mobile',
+    imageUrl: null,
     icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="17" cy="6" r="2.5" fill="#0f766e" stroke="none"/><line x1="16" y1="5.5" x2="18" y2="5.5" stroke="white" stroke-width="1"/><line x1="17" y1="4.5" x2="17" y2="6.5" stroke="white" stroke-width="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="14" x2="14" y2="14"/><line x1="8" y1="17" x2="12" y2="17"/></svg>`,
     bgColor: '#f0fafa',
     name: 'Vigil — Document Expiration Tracker',
     shortDesc: 'Mobile app that captures your vehicle document details, stores them securely, and delivers timely reminders via email, push notification, and calendar invite before anything expires.',
-    fullDesc: 'A practical mobile utility for vehicle owners who want to stay ahead of expiring documents — licence, insurance, road worthiness, and more. Snap a photo of the document, log the expiry date, and let the app handle the rest. Never get caught by a roadside officer with an expired paper again.',
+    fullDesc: 'A practical mobile utility for vehicle owners who want to stay ahead of expiring documents — licence, insurance, road worthiness, and more. Snap a photo of the document, log the expiry date, and let the app handle the rest.',
     highlights: [
       'Document capture via phone camera — photograph and store vehicle document details with expiry dates in a clean dashboard',
       'Multi-channel reminder delivery: email alerts, push notifications, and .ics calendar invites for belt-and-braces coverage',
@@ -554,40 +554,37 @@ const PROJECTS = [
       'Designed around a real, recurring problem faced by vehicle owners in Nigeria and beyond'
     ],
     tech: ['React Native', 'Expo', 'JavaScript', 'OCR', 'e-Mail Notification'],
-    link: "https://expo.dev/accounts/onodu/projects/reminderdemo",
+    link: 'https://expo.dev/accounts/onodu/projects/reminderdemo',
     status: 'Project'
   }
 ];
 
-/* =====================================================================
-   ✏️  SITE CONFIG — Update your personal links here
-   ===================================================================== */
-const SITE_CONFIG = {
-  github: 'https://github.com/Onoduchiagozie?tab=repositories',
-  linkedin: 'https://www.linkedin.com/in/valentine-onodu-0a381023b/',
-  email: 'da.valchi@gmail.com'
-};
-
-/* =====================================================================
-   APP LOGIC — No need to edit below this line
-   ===================================================================== */
-
 function renderProjects(cat) {
   const scroll = document.getElementById('projects-scroll');
   const filtered = cat === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === cat);
-  scroll.innerHTML = filtered.map(p => `
-    <div class="project-card" data-id="${p.id}">
-      <div class="project-card-top" style="background:${p.bgColor}">${p.icon}</div>
-      <div class="project-card-body">
-        <h3>${p.name}</h3>
-        <p>${p.shortDesc}</p>
+
+  scroll.innerHTML = filtered.map(p => {
+    const cardTop = p.imageUrl
+      ? `<img src="${p.imageUrl}" alt="${p.name}" class="project-image"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+         <div class="project-card-top" style="background:${p.bgColor};display:none">${p.icon}</div>`
+      : `<div class="project-card-top" style="background:${p.bgColor}">${p.icon}</div>`;
+
+    return `
+      <div class="project-card" data-id="${p.id}">
+        ${cardTop}
+        <div class="project-card-body">
+          <h3>${p.name}</h3>
+          <p>${p.shortDesc}</p>
+        </div>
+        <div class="project-card-footer">
+          ${p.tech.slice(0,3).map(t => `<span class="tech-tag">${t}</span>`).join('')}
+          ${p.tech.length > 3 ? `<span class="tech-tag">+${p.tech.length - 3}</span>` : ''}
+        </div>
       </div>
-      <div class="project-card-footer">
-        ${p.tech.slice(0,3).map(t => `<span class="tech-tag">${t}</span>`).join('')}
-        ${p.tech.length > 3 ? `<span class="tech-tag">+${p.tech.length - 3}</span>` : ''}
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
+
   scroll.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', () => openModal(parseInt(card.dataset.id)));
   });
@@ -608,8 +605,19 @@ function openModal(id) {
   const header = document.getElementById('modal-header');
   const body = document.getElementById('modal-body');
 
-  header.style.background = p.bgColor;
-  header.innerHTML = `${p.icon}<button class="modal-close" onclick="closeModal()">✕</button>`;
+  if (p.imageUrl) {
+    header.style.background = p.bgColor;
+    header.innerHTML = `
+      <img src="${p.imageUrl}" alt="${p.name}"
+           style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;background:${p.bgColor}">${p.icon}</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    `;
+  } else {
+    header.style.background = p.bgColor;
+    header.innerHTML = `${p.icon}<button class="modal-close" onclick="closeModal()">✕</button>`;
+  }
 
   const liveBtn = p.link
     ? `<a href="${p.link}" target="_blank" rel="noopener" class="btn btn-live">View ↗</a>`
