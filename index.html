@@ -518,26 +518,41 @@ const PROJECTS = [
     link: null,
     status: 'Production'
   },
-  {
-    id: 5,
-    cat: 'mobile',
-    imageUrl: null,
-    icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M8.5 14s1.5 2 3.5 2 3.5-2 3.5-2"/><circle cx="9" cy="9" r="0.8" fill="#d97706"/><circle cx="15" cy="9" r="0.8" fill="#d97706"/><path d="M9.5 6.5C10 5.5 11 5 12 5s2 .5 2.5 1.5"/></svg>`,
-    bgColor: '#fff7ed',
-    name: 'Creamers — Cake &amp; Treats Ordering App',
-    shortDesc: 'Cross-platform mobile app for dough lovers and snackers to browse, customise, and order cakes, pastries, and baked goods on demand.',
-    fullDesc: 'A full-featured React Native mobile app for ordering cakes and sweet treats. Built for anyone who appreciates quality baked goods — users can browse a catalogue, place orders, and manage their accounts across iOS and Android from a single smooth mobile experience.',
-    highlights: [
-      'Cross-platform mobile app built with React Native and Expo, targeting both iOS and Android from a single codebase',
-      'Complete user authentication system including sign-up, sign-in, and account management',
-      'Product browsing experience with item categories, descriptions, and a streamlined ordering workflow',
-      'ASP.NET Core Web API backend handling orders, product management, and user sessions',
-      'SQL database with a structured schema for products, orders, and customer records'
-    ],
-    tech: ['React Native', 'Expo', 'JavaScript', 'ASP.NET Core', 'C#', 'SQL Server'],
-    link: 'https://expo.dev/accounts/onodu/projects/OuroBoros',
-    status: 'Mobile App'
-  },
+ {
+  id: 5,
+  cat: 'mobile',
+  imageUrl: null,
+  icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M8.5 14s1.5 2 3.5 2 3.5-2 3.5-2"/><circle cx="9" cy="9" r="0.8" fill="#d97706"/><circle cx="15" cy="9" r="0.8" fill="#d97706"/><path d="M9.5 6.5C10 5.5 11 5 12 5s2 .5 2.5 1.5"/></svg>`,
+  bgColor: '#fff7ed',
+  name: 'Creamers — Premium Cake & Treats Ordering App',
+
+  shortDesc:
+    'Android-focused mobile ordering app that allows customers to browse desserts, place orders, and access exclusive chef-only menu items through a subscription system.',
+
+  fullDesc:
+    'Creamers is an Android-focused mobile application built with React Native and Expo that allows users to explore and order cakes, pastries, and other baked treats through a streamlined mobile interface. The platform supports standard product browsing and ordering while also introducing a gated subscription layer that allows chefs to publish exclusive dishes only visible to subscribed or invited customers. The application is powered by an ASP.NET Core Web API backend that manages authentication, product catalogues, order workflows, and subscription access control, with a relational SQL database maintaining structured records for users, products, orders, and subscription states.',
+
+  highlights: [
+    'Android-focused cross-platform mobile application built with React Native and Expo using a single shared codebase',
+    'Secure authentication and account management system supporting user registration, login, and persistent sessions',
+    'Structured product discovery interface with categories, item descriptions, and a streamlined order workflow',
+    'Subscription-based access system enabling chefs to publish private or premium dishes visible only to subscribed customers',
+    'ASP.NET Core Web API backend handling authentication, product management, orders, and subscription state management',
+    'Relational SQL database schema managing users, products, orders, and gated content access'
+  ],
+
+  tech: [
+    'React Native',
+    'Expo',
+    'JavaScript',
+    'ASP.NET Core',
+    'C#',
+    'SQL Server'
+  ],
+
+  link: 'https://expo.dev/accounts/onodu/projects/OuroBoros',
+  status: 'Android Mobile App'
+},
   {
     id: 6,
     cat: 'mobile',
