@@ -648,53 +648,29 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
 
 <script>
 const PROJECTS = [
-  {
-    id: 10,
-    cat: 'ai',
-    imageUrl: null,
-    icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#5b21b6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="12" height="16" rx="1" fill="#ede9fe" stroke="none"/><rect x="4" y="3" width="12" height="16" rx="1"/><line x1="7" y1="7" x2="13" y2="7"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="7" y1="13" x2="10" y2="13"/><circle cx="17" cy="17" r="3.2"/><line x1="19.3" y1="19.3" x2="21.5" y2="21.5"/></svg>`,
-    bgColor: '#f4f2ee',
-    name: 'OmnissiahCore - Warhammer Lore RAG Engine',
-    shortDesc: '498,850 chunks. 2,350+ books. Custom FAISS + BM25 hybrid retrieval, RRF, cross-encoder reranking, and chunk stitching  fully local, zero cloud.',
-    fullDesc: 'A production-grade, fully local Retrieval-Augmented Generation system built to query 498,850 embedded text chunks from 2,350+ books. Two query modes:  Narrator (scene reconstruction), Explorer (object/artefact analysis). Built this entirely from scratch  no LangChain, no LlamaIndex.',
-    highlightLabel: 'What"s engineered ? ',
-    highlights: [
-      '498,850 × 1024-dim FAISS vectors (BAAI/bge-m3) + in-memory BM25  merged via Reciprocal Rank Fusion. No LangChain. Built from scratch in Python.',
-      'Narrative chunk-stitching algorithm: expands each retrieval hit ±N sequential neighbours, restoring full scene continuity across fragmented source text from multiple books',
-      'Cross-encoder reranking (ms-marco-MiniLM-L-6-v2) , joint query-document attention scoring as a final relevance pass, outperforming embedding similarity alone',
-      'FastAPI backend with Server-Sent Events streaming for token-by-token LLM output; async queue / daemon thread bridge for narrator streaming',
-      'Multi-format ingestion pipeline (PDF, EPUB, AZW3, CBR, CBZ, TXT) with OCR fallback via Tesseract; ONNX GPU acceleration for build-time embedding on RTX 5050',
-      'Two-machine deployment: build machine (48GB RAM, RTX 5050, full pipeline + CrossEncoder) and low-memory query machine (8GB CPU only)  all local, no cloud',
-    ],
-    tech: ['Python', 'FastAPI', 'FAISS', 'BGE-M3', 'BM25', 'RRF', 'CrossEncoder', 'LM Studio', 'ONNX', 'SSE'],
-    link: 'http://legion.runasp.net/workspace',
-    status: 'Personal AI Project',
-    isAI: true
-  },
-  {
-    id: 11,
-    cat: 'ai',
-    imageUrl: null,
-    icon: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#5b21b6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
-    bgColor: '#ede9fe',
-    name: 'TheForge — .NET AI Gateway',
-    shortDesc: 'ASP.NET Core 8 / Blazor Server gateway in front of OmnissiahCore — auth, user tiers, query caching, SSE streaming proxy, and the production Blazor UI.',
-    fullDesc: 'A production .NET service that sits in front of OmnissiahCore and owns all gateway concerns: API key authentication, user tier enforcement (archmagos / novice), query quota tracking, server-side caching, SSE streaming proxy with duplicate-frame handling, and the Blazor Server production UI.',
-    highlightLabel: 'Architecture highlights',
-    highlights: [
-      'Strict DTO separation: ClientQueryRequest → FastApiQueryRequest → QueryResponse → GatewayQueryResponse. UI and Python backend contracts stay fully independent.',
-      'ForgeAuthMiddleware — API key auth with per-user tier enforcement and quota tracking via EF Core',
-      'QueryCacheService — intercepts repeated queries before forwarding to the Python backend',
-      'SSE streaming proxy with async queue / daemon thread bridge, duplicate [DONE] frame handling, and cancellation support',
-      'Blazor Server UI with mode selector (Remembrancer / Narrator / Explorer), source panel, and PipelineProgress stepper for live retrieval stage events',
-      'SystemController proxying /health, /info, /config/runtime, and /query/inspect for live diagnostics from the UI',
-    ],
-    tech: ['ASP.NET Core 8', 'Blazor Server', 'C#', 'EF Core', 'SSE', 'REST', 'SQL Server'],
-    link: 'http://legion.runasp.net',
-    status: 'Personal AI Project',
-    isAI: true
-  },
-  {
+ {
+  id: 10,
+  cat: 'ai',
+  imageUrl: null,
+  // keep the existing id 10 icon and bgColor
+  name: 'Warhammer RAG Universe',
+  shortDesc: 'Ask anything about Warhammer 40K and get answers drawn from 2,350+ books. Runs on local AI, no paid APIs.',
+  fullDesc: 'An AI assistant that searches 498,850 passages from 2,350+ Warhammer 40K and Horus Heresy books and writes answers from what it finds. Built from scratch in Python, without ready-made AI frameworks like LangChain. It has two modes: Explorer, for looking up objects and artefacts, and Narrator, for retelling scenes. Narrator can write a scene live, or open the Battle Scene Archive, a ready-made collection of battle scenes that works even when my AI engine is off. The website is hosted online and talks to an AI engine running on my own machine, so no third-party AI services are involved.',
+  highlightLabel: 'What\'s engineered',
+  highlights: [
+    'Smarter search: combines meaning-based search (FAISS, BAAI/bge-m3) with keyword search (BM25), so it finds passages that match the idea and the exact terms',
+    'Re-ranking: a second model (ms-marco-MiniLM-L-6-v2) re-checks the top results and puts the most relevant first',
+    'Scene stitching: pulls in the passages around each result, so a battle reads as one continuous scene across split-up source text',
+    'Battle Scene Archive: a ready-made scene collection served by the website, so readers can browse it without my AI engine running',
+    'Two parts working together: an AI engine on my own machine (Python, FastAPI, LM Studio) and an online website (ASP.NET Core 8, Blazor) that streams answers as they are written',
+    'Book ingestion: reads PDF, EPUB, AZW3, CBR, CBZ and TXT files, using OCR (Tesseract) on scanned pages, and uses the GPU (ONNX, RTX 5050) to speed up the one-time indexing',
+    'Safe connection between website and engine: the two sides pass messages in fixed formats, so either can change without breaking the other'
+  ],
+  tech: ['Python', 'FastAPI', 'FAISS', 'BGE-M3', 'BM25', 'RRF', 'CrossEncoder', 'LM Studio', 'ONNX', 'ASP.NET Core 8', 'Blazor Server', 'C#', 'SSE'],
+  link: 'http://legion.runasp.net',
+  status: 'AI Project',
+  isAI: true
+}, {
     id: 1,
     cat: 'backend',
     imageUrl: 'https://estudy.ng/static/media/Applogo.9d11927335e1bfd9cc3d.png',
