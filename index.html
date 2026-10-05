@@ -651,10 +651,10 @@ const PROJECTS = [
  {
   id: 10,
   cat: 'ai',
-  imageUrl: null,
+  imageUrl: 'https://share.google/QnQwlqjqOACkmYQXf',
   // keep the existing id 10 icon and bgColor
   name: 'Warhammer RAG Universe',
-  shortDesc: 'Ask anything about Warhammer 40K and get answers drawn from 2,350+ books. Runs on local AI, no paid APIs.',
+  shortDesc: 'Ask anything about Warhammer 40K and get answers drawn from 2,350+ books.',
   fullDesc: 'An AI assistant that searches 498,850 passages from 2,350+ Warhammer 40K and Horus Heresy books and writes answers from what it finds. Built from scratch in Python, without ready-made AI frameworks like LangChain. It has two modes: Explorer, for looking up objects and artefacts, and Narrator, for retelling scenes. Narrator can write a scene live, or open the Battle Scene Archive, a ready-made collection of battle scenes that works even when my AI engine is off. The website is hosted online and talks to an AI engine running on my own machine, so no third-party AI services are involved.',
   highlightLabel: 'What\'s engineered',
   highlights: [
@@ -663,11 +663,11 @@ const PROJECTS = [
     'Scene stitching: pulls in the passages around each result, so a battle reads as one continuous scene across split-up source text',
     'Battle Scene Archive: a ready-made scene collection served by the website, so readers can browse it without my AI engine running',
     'Two parts working together: an AI engine on my own machine (Python, FastAPI, LM Studio) and an online website (ASP.NET Core 8, Blazor) that streams answers as they are written',
-    'Book ingestion: reads PDF, EPUB, AZW3, CBR, CBZ and TXT files, using OCR (Tesseract) on scanned pages, and uses the GPU (ONNX, RTX 5050) to speed up the one-time indexing',
+    
     'Safe connection between website and engine: the two sides pass messages in fixed formats, so either can change without breaking the other'
   ],
-  tech: ['Python', 'FastAPI', 'FAISS', 'BGE-M3', 'BM25', 'RRF', 'CrossEncoder', 'LM Studio', 'ONNX', 'ASP.NET Core 8', 'Blazor Server', 'C#', 'SSE'],
-  link: 'http://legion.runasp.net',
+  tech: ['Python', 'FastAPI', 'FAISS','.NET CORE', 'BGE-M3', 'BM25', 'RRF', 'CrossEncoder', 'LM Studio', 'ONNX', 'Blazor Server', 'C#', 'SSE'],
+  link: 'httpS://legion.runasp.net',
   status: 'AI Project',
   isAI: true
 }, {
