@@ -648,26 +648,26 @@ footer { background: var(--ink-soft); color: rgba(255,255,255,0.3); text-align: 
 
 <script>
 const PROJECTS = [
- {
+{
   id: 10,
   cat: 'ai',
-  imageUrl: 'https://share.google/QnQwlqjqOACkmYQXf',
-  // keep the existing id 10 icon and bgColor
+  imageUrl: null,
+  icon: `<svg width="160" height="67" viewBox="0 0 688 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Imperial aquila"><path fill="#c4b5fd" fill-rule="evenodd" d="M303 191l-2 1-14 28-22 0 2 19 8-10 7 1-1 4-14 25 2 5 9 4 7 0-7-8 0-3 13-20 4 3 0 4-4 10 18-13 0-2-8-12 0-4 13-23zM387 190l-12 10 13 23 0 4-8 14 17 13-4-13 5-4 13 20 0 3-7 8 7 0 7-3 4-5-15-30 7-1 7 10 3-19-22 0zM344 76l-8 24-31 80 3 4 16 13-2 8-10 21 0 2 4 5 5-8 6-16 2-2 3 3-9 24 0 4 5 6 11-30 2 2-8 29 0 4 11 15 12-15-1-8-7-25 2-2 2 3 9 27 5-6 0-4-8-21 0-5 2-1 2 2 9 23 2 1 4-5 0-2-13-28 20-17zM399 62l11 5 4 4 0 6 11-12-1-2-13-6-3 0zM281 57l-3 0-13 6-1 2 11 12 0-6 4-4 11-5zM367 55l-17 13 9 25 19-22 0-3-4-7zM322 55l-9 9-2 7 19 22 9-25zM410 51l-5-10-43 3 1 3 8 3 6 6 5 10zM279 51l27 15 6-10 6-6 8-3 1-3-44-3zM289 48l2-2 4 0 2 2 0 4-5 2-3-3zM362 102l26 66 21-14-25-37-2-5 2-3 3 0 2 2 0 5 9 14 3-10 2-2 2 2 0 19 15 17-1-30-1-1 1-1 3 1 10 42 24 17-20-59 2-3 4 2 27 62 8-2 16-1 1-1-34-59-3-6 1-2 50 63 22-14-60-63 2-2 71 56 5-2 21-18-88-47-5-4 1-3 105 41 3 0 26-23-132-36-4-2 1-3 149 28 23-24-125-10-34-4-12 0-5-2-1-2 1-2 76 3 1 1 24 0 1 1 19 0 1 1 38 1 1 1 24 0 21-25-254-4 0 9 13 7 12 13 4 7 3 16-2 8-4 7-6 6-6 3-11 2-15-2-31-12-3 0zM326 104l-1-5-14-14-3 0-31 12-15 2-11-2-7-4-5-5-5-10 0-16 8-15 14-13 9-4-1-9-253 4 21 25 24 0 1-1 20 0 19-2 121-5 1 1-1 3-5 2-12 0-34 4-125 10 23 24 149-28 2 2-5 3-132 36 26 23 3 0 105-41 1 3-5 4-88 47 22 19 4 1 71-56 2 2-61 63 23 14 45-58 5-4 1 1-36 62-1 2 1 2 8 0 16 3 21-47 2-7 4-8 4-2 2 3-17 49-1 6-2 3 1 1 23-17 10-42 1-1 2 1-1 31 15-17 0-19 2-2 2 2 3 10 9-14 0-5 2-2 3 0 2 2-2 6-25 37 21 14z"/></svg>`,
+  bgColor: '#0d1117',
   name: 'Warhammer RAG Universe',
-  shortDesc: 'Ask anything about Warhammer 40K and get answers drawn from 2,350+ books.',
-  fullDesc: 'An AI assistant that searches 498,850 passages from 2,350+ Warhammer 40K and Horus Heresy books and writes answers from what it finds. Built from scratch in Python, without ready-made AI frameworks like LangChain. It has two modes: Explorer, for looking up objects and artefacts, and Narrator, for retelling scenes. Narrator can write a scene live, or open the Battle Scene Archive, a ready-made collection of battle scenes that works even when my AI engine is off. The website is hosted online and talks to an AI engine running on my own machine, so no third-party AI services are involved.',
+  shortDesc: '2,350+ books. 498,850 searchable passages. One AI that answers Warhammer 40K lore straight from the source text.',
+  fullDesc: 'A retrieval-augmented AI system that reads 2,350+ Warhammer 40K and Horus Heresy books, finds the passages that matter, and writes answers grounded in them. Every layer is built from scratch in Python, with no LangChain or LlamaIndex, and it runs on self-hosted language models with no third-party AI APIs. Two modes: Explorer for objects and artefacts, Narrator for rebuilding scenes, backed by a Battle Scene Archive of ready-made battles.',
   highlightLabel: 'What\'s engineered',
   highlights: [
-    'Smarter search: combines meaning-based search (FAISS, BAAI/bge-m3) with keyword search (BM25), so it finds passages that match the idea and the exact terms',
-    'Re-ranking: a second model (ms-marco-MiniLM-L-6-v2) re-checks the top results and puts the most relevant first',
-    'Scene stitching: pulls in the passages around each result, so a battle reads as one continuous scene across split-up source text',
-    'Battle Scene Archive: a ready-made scene collection served by the website, so readers can browse it without my AI engine running',
-    'Two parts working together: an AI engine on my own machine (Python, FastAPI, LM Studio) and an online website (ASP.NET Core 8, Blazor) that streams answers as they are written',
-    
-    'Safe connection between website and engine: the two sides pass messages in fixed formats, so either can change without breaking the other'
+    'Hybrid search: meaning-based vector search (FAISS, BGE-M3) plus exact-keyword search (BM25), merged with Reciprocal Rank Fusion so neither misses what the other finds',
+    'Cross-encoder re-ranking: a second model reads each question and passage together and re-orders the top results by relevance',
+    'Scene stitching: pulls in the neighbouring passages around each hit, so a battle reads as one continuous scene instead of scattered fragments',
+    'Real-time streaming: answers appear word by word over Server-Sent Events, with a live view of each retrieval stage',
+    'Battle Scene Archive: a static scene library served directly by the .NET app, with no AI model needed to browse it',
+    'Two-service architecture: an ASP.NET Core 8 / Blazor Server web app in front of a FastAPI AI service, joined by strict data contracts so each side can change independently'
   ],
-  tech: ['Python', 'FastAPI', 'FAISS','.NET CORE', 'BGE-M3', 'BM25', 'RRF', 'CrossEncoder', 'LM Studio', 'ONNX', 'Blazor Server', 'C#', 'SSE'],
-  link: 'httpS://legion.runasp.net',
+  tech: ['Python', 'FastAPI', 'FAISS', '.NET Core', 'BGE-M3', 'BM25', 'RRF', 'CrossEncoder', 'LM Studio', 'ONNX', 'Blazor Server', 'C#', 'SSE'],
+  link: 'https://legion.runasp.net',
   status: 'AI Project',
   isAI: true
 }, {
